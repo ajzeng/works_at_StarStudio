@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 1000px;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.popup {
+    display: none;
+    z-index: 100;
+}
+
+.popup, .popup .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.popup .mask {
+    background: rgba(0, 0, 0, .4);
+}
+
+.popup-box {
+    position: fixed;
+    position: fixed;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding-bottom: 10px;
+    border: 1px solid black;
+    background: white;
+    overflow: hidden; 
+}
+
+.popup-title {
+    padding: 5px 10px;
+    border-bottom: 1px solid black;
+    background-color: grey;
+}
+
+.popup-content {
+    padding: 10px;
+}
+
+.popup-operation {
+    position: absolute;
+    padding-bottom: 10px;
+}
+
+.popup-operation span {
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: 1px solid grey;
+}

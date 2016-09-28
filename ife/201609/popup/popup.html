@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>
+            popup
+        </title>
+        <link href="./popup.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="popup" id="popup">
+            <div class="mask">
+            </div>
+            <div class="popup-box">
+                <div class="popup-title">
+                    这是标题
+                </div>
+                <div class="popup-content">
+                    <p>
+                        点击弹窗以外的部分，可以关闭弹窗
+                    </p>
+                    <p>
+                        点击弹窗以外的部分，可以关闭弹窗
+                    </p>
+                </div>
+                <div class="popup-operation">
+                    <span class="popup-yes button">
+                        确定
+                    </span>
+                    <span class="popup-no button">
+                        取消
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <h2>
+            可以修改main.js文件，通过弹窗接口设置弹窗行为，具体如下(可以链式调用)：
+        </h2>
+        <small>
+            提示： 已经将弹窗对象挂在window对象的pop属性下，如果不想修改main.js，
+        可以打开chrome浏览器的调试工具，在console处进行下面操作。
+        </small>
+        <br/>
+        <br/>
+        <br/>
+        <p>
+            1. pop.set_visible(flag); // flag为true显示弹窗，false关闭弹窗
+        </p>
+        <p>
+            2. pop.set_move(flag); // flag为true可以按住标题栏拖动，false关闭此功能
+        </p>
+        <p>
+            3. pop.set_resize(flag); // flag为true可以拖动右边框或下边框或右下角改变弹窗尺寸，false关闭此功能
+        </p>
+        <p>
+            4. pop.set_adaptive(flag); // flag为true可以让弹窗尺寸自适应内容，false关闭此功能
+        </p>
+        <br/>
+        <button id="btn1" style="width: 200px;height: 50px;margin: 50px 0 0 50%; -webkit-transform: translateX(-50%);">
+            打开弹窗
+        </button>
+        <script data-main="./main.js" src="./libs/common/require.2.1.11.js">
+        </script>
+    </body>
+</html>
