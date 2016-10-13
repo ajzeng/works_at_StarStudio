@@ -2,14 +2,15 @@
 
 *准备*：先配置nodejs环境（下面方式1查看效果，不需要，已经打包完成），从终端中进入本目录下，然后执行npm install命令安装依赖的库，可以通过以下两种方式浏览效果。
 
-1.执行webpack命令将打包文件并生成在assets文件夹下，直接打开index.html即可查看。（已经打包完成）
-2.运行webpack-dev-server查看，在命令行下输入`npm run dev`，会自动打开浏览器查看到效果，需要等待一会。
+1. 执行webpack命令将打包文件并生成在assets文件夹下，直接打开index.html即可查看。（已经打包完成）
+2. 运行webpack-dev-server查看，在命令行下输入`npm run dev`，会自动打开浏览器查看到效果，需要等待一会。
 
 `var table = new Table('app',data);`中传入2个参数，第一个为需要绑定到页面上的dom元素的`id`。
 第二个参数为特定格式的数据。`data`的格式如下
 
 ```js
-	{
+    var data = 
+    {
         "title": {
             "id": "编号",
             "name": "姓名",
@@ -17,7 +18,7 @@
         }, 
         "sortable_title": ["name","chinese", "medicine", "physical"], 
         "sort_mode": ["asc", "desc", "asc"], // 默认升序
-        "body": [{
+        "body": [{  // 需要展示在table中tbody里面的数据
             "id": 0,
             "name": "Jason",
             "chinese": "1",
