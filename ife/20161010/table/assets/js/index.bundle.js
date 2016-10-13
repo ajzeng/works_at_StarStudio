@@ -2471,6 +2471,7 @@
 	            span = spans[i];
 	            u.addEvent(span, 'click', sort_handler.bind(this));
 	        }
+	        u.addEvent(window, 'scroll', scroll_handler.bind(this));
 	    }
 	};
 	Table.prototype.sort_by = function (criteria_arr, sort_mode_arr) {
@@ -2617,6 +2618,28 @@
 	    span.className = 'sort ' + sort_mode;
 	    this.sort_by(criteria, sort_mode);
 	}
+
+	function scroll_handler(e) {
+	    try {
+	        var table, loca, thead;
+	        !scroll_handler.cache.table && (scroll_handler.cache.table = this.table);
+	        table = scroll_handler.cache.table;
+	        loca = table.getBoundingClientRect();
+	        thead = table.getElementsByTagName('thead')[0];
+	        var top = loca.top;
+	        if (top < 0) {
+	            console.log(loca.top);
+	            if (top + loca.height > 0) {
+	                thead.style.transform = 'translateY(' + -loca.top + 'px)';
+	            }
+	        }
+	        if (top > 0) {
+	            thead.style.transform = 'translateY(' + 0 + 'px)';
+	        }
+	    } catch (ex) {
+	        !scroll_handler.cache && (scroll_handler.cache = {});
+	    }
+	}
 	module.exports = Table;
 
 /***/ },
@@ -2711,7 +2734,7 @@
 
 
 	// module
-	exports.push([module.id, ".z-table {\r\n\tborder: 1px solid gray;\r\n\tborder-collapse:collapse;\r\n}\r\n\r\n.z-table thead tr {\r\n\tbackground-color: gray;\r\n}\r\n\r\n.z-table td, .z-table th {\r\n\tpadding: 5px 15px;\r\n\tborder: 1px solid gray;\r\n}\r\n.z-table th:not(:last-child){\r\n\tborder-right: 1px solid white;\r\n}\r\n\r\n.z-table th span.sort {\r\n\tposition: relative;\r\n\tdisplay: inline-block;\r\n\tmargin-left: 10px;\r\n\twidth: 0;\r\n    height: 0;\r\n    cursor: pointer;\r\n    transition: all .2s;\r\n}\r\n\r\n.z-table th span.sort.asc {\r\n\tborder-left: 5px solid transparent;\r\n    border-right: 5px solid transparent;\r\n    border-bottom: 10px solid white;\r\n}\r\n\r\n.z-table th span.sort.desc {\r\n\tborder-left: 5px solid transparent;\r\n    border-right: 5px solid transparent;\r\n    border-top: 10px solid white;\r\n}", ""]);
+	exports.push([module.id, "body {\r\n\theight: 1600px;\r\n\tpadding-top: 100px;\r\n}\r\n.z-table {\r\n\tborder-collapse:collapse;\r\n}\r\n\r\n.z-table thead {\r\n\tbackground-color: gray;\r\n}\r\n\r\n.z-table td, .z-table th {\r\n\tpadding: 5px 15px;\r\n\tborder: 1px solid gray;\r\n}\r\n\r\n.z-table th:not(:last-child):after{\r\n\t/*border-right: 1px solid white;*/\r\n\r\n}\r\n\r\n.z-table th span.sort {\r\n\tposition: relative;\r\n\tdisplay: inline-block;\r\n\tmargin-left: 10px;\r\n\twidth: 0;\r\n    height: 0;\r\n    cursor: pointer;\r\n    transition: all .2s;\r\n}\r\n\r\n.z-table th span.sort.asc {\r\n\tborder-left: 5px solid transparent;\r\n    border-right: 5px solid transparent;\r\n    border-bottom: 10px solid white;\r\n}\r\n\r\n.z-table th span.sort.desc {\r\n\tborder-left: 5px solid transparent;\r\n    border-right: 5px solid transparent;\r\n    border-top: 10px solid white;\r\n}", ""]);
 
 	// exports
 

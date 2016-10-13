@@ -1,6 +1,6 @@
 var Table = require('./js/table');
 var data = get_data();
-var t = new Table('app',data);
+var t = new Table('app',data).sort_by('id');
 window.t = t;
 
 function get_data() {

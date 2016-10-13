@@ -1,9 +1,12 @@
+body {
+	height: 1600px;
+	padding-top: 100px;
+}
 .z-table {
-	border: 1px solid gray;
 	border-collapse:collapse;
 }
 
-.z-table thead tr {
+.z-table thead {
 	background-color: gray;
 }
 
@@ -11,8 +14,20 @@
 	padding: 5px 15px;
 	border: 1px solid gray;
 }
-.z-table th:not(:last-child){
-	border-right: 1px solid white;
+
+.z-table th {
+	position: relative;
+}
+
+.z-table th:not(:last-child):after{
+	/*border-right: 1px solid white;*/
+	position: absolute;
+	top:0;
+	right: -1px;
+	bottom: 0;
+	width: 1px;
+	background-color: white;
+	content: '';
 }
 
 .z-table th span.sort {

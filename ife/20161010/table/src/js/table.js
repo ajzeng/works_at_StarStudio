@@ -15,6 +15,7 @@ Table.prototype.init = function() {
             span = spans[i];
             u.addEvent(span, 'click', sort_handler.bind(this));
         }
+        u.addEvent(window, 'scroll', scroll_handler.bind(this));
     }
 };
 Table.prototype.sort_by = function(criteria_arr, sort_mode_arr) {
@@ -38,11 +39,9 @@ Table.prototype.create = function(data) {
         var title = data.title,
             sortable_title = data.sortable_title,
             sort_mode = data.sort_mode,
-            body = data.body,
-            criteria_arr = data.sortable_title,
-            sort_mode_arr = data.sort_mode;
+            body = data.body;
         var thead = create_thead(title, sortable_title, sort_mode);
-        sort(body, criteria_arr, sort_mode_arr);
+        sort(body, sortable_title, sort_mode);
         var tbody = create_tbody(title, body);
         var table = create_table(thead, tbody);
         this.data = data;
@@ -70,7 +69,7 @@ function create_thead(title, sortable_title, sort_mode) {
         idx = sortable_title.indexOf(key);
         if (idx > -1) {
             span = document.createElement('span');
-            span.className = 'sort ' + sort_mode[idx];
+            span.className = 'sort ' + (sort_mode[idx] || 'asc');
             th.appendChild(span);
         }
     }
@@ -149,5 +148,27 @@ function sort_handler(e) {
     else sort_mode = 'asc';
     span.className = 'sort ' + sort_mode;
     this.sort_by(criteria, sort_mode);
+}
+
+function scroll_handler(e) {
+    try{
+        var table, loca, thead;
+        !scroll_handler.cache.table && (scroll_handler.cache.table = this.table);
+        table = scroll_handler.cache.table;
+        loca = table.getBoundingClientRect();
+        thead = table.getElementsByTagName('thead')[0];
+        var top = loca.top;
+        if(top < 0) {
+            if(top + loca.height > 0) {
+                thead.style.transform = 'translateY('+(-loca.top)+'px)';
+            }
+        }
+        if(top > 0) {
+            thead.style.transform = 'translateY('+0+'px)';
+        }
+    } catch(ex) {
+        !scroll_handler.cache && (scroll_handler.cache = {});
+    }
+
 }
 module.exports = Table;
