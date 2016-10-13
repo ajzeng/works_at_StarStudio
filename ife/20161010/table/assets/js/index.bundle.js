@@ -48,7 +48,7 @@
 
 	var Table = __webpack_require__(1);
 	var data = get_data();
-	var t = new Table('app', data);
+	var t = new Table('app', data).sort_by('id');
 	window.t = t;
 
 	function get_data() {
@@ -2495,11 +2495,9 @@
 	        var title = data.title,
 	            sortable_title = data.sortable_title,
 	            sort_mode = data.sort_mode,
-	            body = data.body,
-	            criteria_arr = data.sortable_title,
-	            sort_mode_arr = data.sort_mode;
+	            body = data.body;
 	        var thead = create_thead(title, sortable_title, sort_mode);
-	        sort(body, criteria_arr, sort_mode_arr);
+	        sort(body, sortable_title, sort_mode);
 	        var tbody = create_tbody(title, body);
 	        var table = create_table(thead, tbody);
 	        this.data = data;
@@ -2534,7 +2532,7 @@
 	        idx = sortable_title.indexOf(key);
 	        if (idx > -1) {
 	            span = document.createElement('span');
-	            span.className = 'sort ' + sort_mode[idx];
+	            span.className = 'sort ' + (sort_mode[idx] || 'asc');
 	            th.appendChild(span);
 	        }
 	    }
@@ -2628,7 +2626,6 @@
 	        thead = table.getElementsByTagName('thead')[0];
 	        var top = loca.top;
 	        if (top < 0) {
-	            console.log(loca.top);
 	            if (top + loca.height > 0) {
 	                thead.style.transform = 'translateY(' + -loca.top + 'px)';
 	            }
@@ -2734,7 +2731,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\r\n\theight: 1600px;\r\n\tpadding-top: 100px;\r\n}\r\n.z-table {\r\n\tborder-collapse:collapse;\r\n}\r\n\r\n.z-table thead {\r\n\tbackground-color: gray;\r\n}\r\n\r\n.z-table td, .z-table th {\r\n\tpadding: 5px 15px;\r\n\tborder: 1px solid gray;\r\n}\r\n\r\n.z-table th:not(:last-child):after{\r\n\t/*border-right: 1px solid white;*/\r\n\r\n}\r\n\r\n.z-table th span.sort {\r\n\tposition: relative;\r\n\tdisplay: inline-block;\r\n\tmargin-left: 10px;\r\n\twidth: 0;\r\n    height: 0;\r\n    cursor: pointer;\r\n    transition: all .2s;\r\n}\r\n\r\n.z-table th span.sort.asc {\r\n\tborder-left: 5px solid transparent;\r\n    border-right: 5px solid transparent;\r\n    border-bottom: 10px solid white;\r\n}\r\n\r\n.z-table th span.sort.desc {\r\n\tborder-left: 5px solid transparent;\r\n    border-right: 5px solid transparent;\r\n    border-top: 10px solid white;\r\n}", ""]);
+	exports.push([module.id, "body {\r\n\theight: 1600px;\r\n\tpadding-top: 100px;\r\n}\r\n.z-table {\r\n\tborder-collapse:collapse;\r\n}\r\n\r\n.z-table thead {\r\n\tbackground-color: gray;\r\n}\r\n\r\n.z-table td, .z-table th {\r\n\tpadding: 5px 15px;\r\n\tborder: 1px solid gray;\r\n}\r\n\r\n.z-table th {\r\n\tposition: relative;\r\n}\r\n\r\n.z-table th:not(:last-child):after{\r\n\t/*border-right: 1px solid white;*/\r\n\tposition: absolute;\r\n\ttop:0;\r\n\tright: -1px;\r\n\tbottom: 0;\r\n\twidth: 1px;\r\n\tbackground-color: white;\r\n\tcontent: '';\r\n}\r\n\r\n.z-table th span.sort {\r\n\tposition: relative;\r\n\tdisplay: inline-block;\r\n\tmargin-left: 10px;\r\n\twidth: 0;\r\n    height: 0;\r\n    cursor: pointer;\r\n    transition: all .2s;\r\n}\r\n\r\n.z-table th span.sort.asc {\r\n\tborder-left: 5px solid transparent;\r\n    border-right: 5px solid transparent;\r\n    border-bottom: 10px solid white;\r\n}\r\n\r\n.z-table th span.sort.desc {\r\n\tborder-left: 5px solid transparent;\r\n    border-right: 5px solid transparent;\r\n    border-top: 10px solid white;\r\n}", ""]);
 
 	// exports
 
