@@ -1,0 +1,38 @@
+.z-table {
+	border: 1px solid gray;
+	border-collapse:collapse;
+}
+
+.z-table thead tr {
+	background-color: gray;
+}
+
+.z-table td, .z-table th {
+	padding: 5px 15px;
+	border: 1px solid gray;
+}
+.z-table th:not(:last-child){
+	border-right: 1px solid white;
+}
+
+.z-table th span.sort {
+	position: relative;
+	display: inline-block;
+	margin-left: 10px;
+	width: 0;
+    height: 0;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.z-table th span.sort.asc {
+	border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid white;
+}
+
+.z-table th span.sort.desc {
+	border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid white;
+}
